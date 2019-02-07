@@ -1,6 +1,16 @@
 superuser toni
 pwd agutzil
 
+
+git 
+ToniRovira
+caractersencalen15
+
+pythonanywere 
+ToniRovira (yourusername.pythonanywhere.com)
+caractersencalen15
+api token: 59473af55d567ad605d456b2580287b7e8c915f2
+
 a 10.136.193.168
 operador, administracioPC
 2019a112
@@ -27,3 +37,6 @@ D:\Usuaris\pcarovira>git init
 Initialized empty Git repository in D:/Usuaris/pcarovira/.git/
 
 D:\TD>python D:\Usuaris\pcarovira\AppData\Local\Programs\Python\Python36-32\Scripts\django-admin.exe startproject mysite .
+
+
+
