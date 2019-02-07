@@ -1,0 +1,26 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+{% csrf_token %}
+<h1>Llistat de Concesions</h1>
+
+{% if concesio_list %}
+  <ul>
+
+  {% for concesio in concesio_list %}
+    <li>
+      <a href="{{ concesio.get_absolute_url }}">
+      {{ concesio }} ({{concesio.concesionari}} 
+      </a>
+    </li>
+  {% endfor %}
+
+ </ul>
+{% else %}
+  <p>No hi ha concesions.</p>
+{% endif %}
+        
+        
+        
+{% endblock %}
+

@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+ {% csrf_token %}
+<h1>Peticio de: {{ peticio.peticionari  }}</h1>
+
+<p><strong>Peticio:</strong> {{ peticio.id }}</p>
+<p><strong>Data Petició:</strong> {{ peticio.data_peticio }}</p> 
+<p><strong>Sol.licitant:</strong> {{ peticio.peticionari }}</p>
+<p><strong>Nombre d'assistents:</strong> {{ peticio.assitents }}</p> 
+<p><strong>Data inici:</strong> {{ peticio.data_inici }}</p> 
+<p><strong>Data final:</strong> {{ peticio.data_final }}</p> 
+<p><strong>Motiu:</strong> {{ peticio.motiu }}</p> 
+<p><strong>Format sol·licitat:</strong> {{ peticio.get_status_display }}</p> 
+{% for conces in peticio.concesio_set.all %}
+    <p><strong>Petició assignada en concessió :</strong>
+    <a href="{% url 'concesio-detail' conces.id %}">{{conces.id}} per {{conces.concesionari}} </a></p>
+{% endfor %}
+    <a class="btn btn-default" href="{% url 'peticio_servir' pk=peticio.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+
+{% endblock %}

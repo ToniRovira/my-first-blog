@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+{% csrf_token %}
+{% block content %}
+
+<h1>Concessio {{ concesio.id  }} feta per: {{ concesio.concesionari  }}</h1>
+
+<p><strong>Peticio Servida:</strong> {{ concesio.peticio_servida }}</p>
+<p><strong>Sala donada:</strong> {{ concesio.sala_donada }}</p>
+<p><strong>Data concessió:</strong> {{ concesio.data_concesio }}</p>  
+<p><strong>Data inici:</strong> {{ concesio.start_time }}</p>  
+<p><strong>Data final:</strong> {{ concesio.end_time }}</p>  
+{% endblock %}

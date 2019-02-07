@@ -1,0 +1,26 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+ {% csrf_token %}
+<h1>Llistat de Peticions</h1>
+
+{% if peticio_list %}
+  <ul>
+
+  {% for peticio in peticio_list %}
+    <li>
+      <a href="{{ peticio.get_absolute_url }}">
+      {{ peticio }} ({{peticio.peticionari}} 
+      </a>
+    </li>
+  {% endfor %}
+
+ </ul>
+{% else %}
+  <p>No hi ha peticions.</p>
+{% endif %}
+        
+        
+        
+{% endblock %}
+

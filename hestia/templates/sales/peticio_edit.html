@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+ 
+<form action="" method="post" class="peticio-form">
+    <h1>Nova petició</h1>
+    {% csrf_token %}
+    <table>
+    {{ form.as_table }}
+    </table>
+    <input type="submit" value="Fer Petició" />
+    
+</form>
+{% endblock %}

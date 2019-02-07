@@ -1,0 +1,81 @@
+{% extends "base_generic.html" %}
+{% block title %}<title>Sales</title>{% endblock %}
+{% block content %}
+
+{% if user.is_authenticated %}
+{% load templatetagname %}
+<h1>Inici Sales</h1>
+<p> Sou a <em> hestia </em> {{ user.username }} </p>
+<h2>Gestió de Sales</h2>
+<p>Eina per sol·licitar sales, espais per reunions, actes i/o formacions. </p>
+{% if user.is_staff %}
+     <p>Soc staff</p>
+{% else %}
+    {% if request.user|has_group:"concesionaris" %} 
+    <p>Soc concesionari</p> 
+        {% if peticions_pendents %}
+            <ul>
+         <p>Peticions pendents de concedir</p>
+                {% for peticio in peticions_pendents %} 
+                    <p><a href="{% url 'peticio-detail' peticio.pk %}">{{peticio}}</a></p>  
+                    </li>
+                {% endfor %}
+                </ul>
+
+        {% else %}
+        <p>No hi ha peticions pendents.</p>
+    {% endif %} 
+
+
+    {% else %}
+        {% if request.user|has_group:"peticionaris" %}
+         <p>Soc peticionari</p> 
+        {% endif %}
+    {% endif %}
+{% endif %}
+
+
+<h2>Contingut dinamic</h2>
+
+<p>Registres de Sales</p>
+<ul>
+<li><strong>Sales:</strong> {{ num_sales }}</li>
+<li><strong>Peticions:</strong> {{ num_peticions }}</li>
+<li><strong>Peticions pendents de servir:</strong> {{ num_peticions_pendents }}</li>
+<li><strong>Concessions:</strong> {{ num_concessions }}</li>
+<li><strong>Peticions_per_user:</strong> {{ num_peticions_per_user }}</li>
+    
+
+    
+    
+{% if llistat_peticions_per_user %}
+    <ul>
+         <p>Peticions d'aquest usuari</p>
+      {% for peticio in llistat_peticions_per_user %} 
+          <p>  {{peticio}}</p>
+          <a href="{% url 'peticio-detail' peticio.pk %}">{{peticio.pk}}</a>  
+      </li>
+      {% endfor %}
+    </ul>
+
+{% else %}
+      <p>There are no books borrowed.</p>
+{% endif %}   
+    
+
+</ul>
+ens has visitat en {{ num_visits }} ocasions.
+Hi {{ user.username }}
+
+{% else %}
+  <p>No estàs validat:</p>
+  <a href="{% url 'login' %}">login</a>
+    <script>
+        setTimeout(function(){
+                window.location.href="{% url 'login' %}"; // The URL that will be redirected too.
+            }, 2000); // The bigger the number the longer the delay.
+    </script>
+
+{% endif %}
+
+{% endblock %}
